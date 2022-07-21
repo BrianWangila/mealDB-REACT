@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Search from "../Search/Search";
 import Home from "../Home/Home";
+import MealDetails from "../Details/MealDetails";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App(){
@@ -9,15 +10,13 @@ function App(){
     <Router>
       <div>
         <Navbar/>
-        <Home />
-        <Search />
+
       </div>
 
       <Routes>
-        <Route path="/" element={Home}>{<Home/>}</Route>
-        <Route path="/" element={Search}>{<Search/>}</Route>
-        <Route path="/" element={Navbar}>{<Navbar/>}</Route>
-
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/search" element={<Search/>}></Route>
+        <Route path="/meal/:mealId" element={<MealDetails/>}></Route>
       </Routes>
 
     </Router>

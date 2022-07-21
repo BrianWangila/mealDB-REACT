@@ -12,12 +12,12 @@ function Home(){
     fetch(BREAKFAST_MEALS)
       .then((resp) => resp.json())
       .then((mealData) => {
-        meals = mealData.meals
+        setMeals = mealData.meals
       })
   }
   useEffect(mealFetcher, [])
 
-  let mealCards = meals.map((meal) => { <MealCard mealName={meal.strMeal} mealThumbnail={meal.strMealThumbnail} mealId={meal.strIdMeal} />})
+  let mealCards = meals.map((meal) => { <MealCard mealName={meal.strMeal} mealThumbnail={meal.strMealThumb} mealId={meal.idMeal} key={meal.idMeal}/>})
 
   return(
     <div className="container">

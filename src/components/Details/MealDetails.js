@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useParams} from "react-router-dom"
 
-const SEARCH_MEAL = "http://www.themealdb.com/api/json/v1/1/lookup.php?i=52772"
+const SEARCH_MEAL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
 
 export default function MealDetails(){
   
@@ -11,6 +11,7 @@ export default function MealDetails(){
   const [instructions, setInstructions] = useState("")
 
   let {mealId} = useParams()
+
   const actualSearch = SEARCH_MEAL + mealId
 
     //function to load items from the internet
@@ -20,6 +21,10 @@ export default function MealDetails(){
         .then((mealData) => {
           const meal = mealData.meals[0]
 
+          setTitle(meal.strMeal)
+          setCategory(meal.strCategory)
+          setInstructions(meal.strInstructions)
+          setImage(meal.strMealThumb)
 
         })
     }
