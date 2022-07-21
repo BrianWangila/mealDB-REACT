@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom"
 
 const SEARCH_MEAL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="

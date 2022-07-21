@@ -5,7 +5,7 @@ const SEARCH_MEAL = "https://www.themealdb.com/api/json/v1/1/search.php?s=m"
 
 function Search (){
 
-  constr [searchItem, setSearchItem] = useState("")
+  const [searchItem, setSearchItem] = useState("")
   const [counter, setCounter] = useState(0)
   const [results, setResults] = useState(0)
 
@@ -20,16 +20,13 @@ function Search (){
 
 
   const searchInfo = () => {
-    const actualSearch = SEARCH_MEAL + mealId
+    const actualSearch = SEARCH_MEAL + searchItem
 
     fetch(actualSearch)
     .then((resp) => resp.json())
     .then((mealData) => {
-      setResults(mealData)
-      mealData.forEach((meal) => {
-        const meal = mealData.meals[0]
-
-      })
+      setSearchItem("")
+      setResults(mealData.meals == null ? 0 : mealData.meals.length)
 
     })
   }
@@ -37,14 +34,14 @@ function Search (){
 
   return (
     <div className="container">
-      Search
-      <form onSubmit={handleSubmit}>
+      
+      <form onSubmit={handleSearchSubmit}>
         <div>
-          <label className="form-label">SEARCH MEAL</label>
-          <input type="text" className="form-control" id="search" name="search" value={searchItem} />
+          <label htmlFor="search" className="form-label">SEARCH MEAL</label>
+          <input type="text" className="form-control" id="search" name="search" value={searchItem} onChange={handleSearch} />
         </div>
       </form>
-      <h3 className="nt-4">SEARCH RESULTS ({})</h3>
+      <h3 className="mt-4">SEARCH RESULTS ({results})</h3>
       <div className="row">
 
       </div>
